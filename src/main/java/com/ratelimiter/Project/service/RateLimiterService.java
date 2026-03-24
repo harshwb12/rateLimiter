@@ -28,7 +28,7 @@ public class RateLimiterService {
         redisScript.setResultType(Long.class);
     }
 
-    public boolean disAllowed(String apiKey) {
+    public boolean isAllowed(String apiKey) {
 
         Long result = redisTemplate.execute(
                 redisScript,
