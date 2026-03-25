@@ -14,5 +14,9 @@ public class User {
 
     private String email;
 
+    @Column(unique = true)
     private String apiKey;
+
+    private int capacity;      // max tokens
+    private int refillRate;    // tokens per minute
 }

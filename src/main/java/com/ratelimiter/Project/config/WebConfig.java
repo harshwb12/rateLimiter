@@ -16,6 +16,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(rateLimiterInterceptor)
                 .addPathPatterns("/api/**")
-                .excludePathPatterns("/api/usage"); // apply to protected APIs
+                .excludePathPatterns("/api/usage", "/rate-limit/**");
     }
 }

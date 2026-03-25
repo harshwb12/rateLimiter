@@ -18,9 +18,6 @@ public class RateLimiterService {
 
     private DefaultRedisScript<Long> redisScript;
 
-    private static final int CAPACITY = 5;
-    private static final int REFILL_RATE = 5;
-
     @PostConstruct
     public void loadScript() {
         redisScript = new DefaultRedisScript<>();
@@ -28,13 +25,13 @@ public class RateLimiterService {
         redisScript.setResultType(Long.class);
     }
 
-    public boolean isAllowed(String apiKey) {
+    public boolean isAllowed(String apiKey, int capacity, int refillRate) {
 
         Long result = redisTemplate.execute(
                 redisScript,
                 Collections.singletonList("rate_limit:" + apiKey),
-                String.valueOf(CAPACITY),
-                String.valueOf(REFILL_RATE),
+                String.valueOf(capacity),
+                String.valueOf(refillRate),
                 String.valueOf(System.currentTimeMillis())
         );
 

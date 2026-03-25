@@ -15,6 +15,9 @@ public class UserService {
         User user = new User();
         user.setEmail(email);
         user.setApiKey(ApiKeyGenerator.generateApiKey());
+
+        user.setCapacity(5);
+        user.setRefillRate(5);
         return userRepository.save(user);
     }
 }
